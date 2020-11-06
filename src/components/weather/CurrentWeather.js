@@ -28,15 +28,15 @@ const CurrentWeather = (props) => {
                 <h4>{weatherData.timezone}</h4>
                 <p><strong>Currently</strong> {currentWeatherData.weather[0].main}</p>
                 <h5>Temperature</h5>
-                { temperatureType === 'Fahrenheit' ? 
+                {/* { temperatureType === 'Fahrenheit' ?  */}
                 <div>
-                {temperatureFahrenheit}&#176; <Button className="ml-2" color="primary" size="sm" onClick={() => {setTemperatureType('Celsius')}}>Change to &deg;C</Button> 
+                {temperatureFahrenheit}&#176; {/* <Button className="ml-2" color="primary" size="sm" onClick={() => {setTemperatureType('Celsius')}}>Change to &deg;C</Button> */}
                 </div>
-                :
+                {/* :
                 <div>
                 {temperatureCelsius}&#176; <Button className="ml-2" color="secondary" size="sm" onClick={() => {setTemperatureType('Fahrenheit')}}>Change to &deg;F</Button>
                 </div>
-                }
+                }  */}
                 <h5>Humidity</h5>
                 <p> {currentWeatherData.humidity}%</p>
                 <h5>Atmospheric Pressure</h5>

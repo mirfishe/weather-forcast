@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Container, Col, Row, Alert} from "reactstrap";
 import {setWeatherData, setCurrentWeather, setHourlyForecast, setDailyForecast} from "../../app/weatherSlice";
 import CurrentWeather from "./CurrentWeather"
+import HourlyForecast from "./HourlyForecast"
 import FiveDayForecast from "./FiveDayForecast"
 import WeatherDataOneCall from "./WeatherDataOneCall.json";
 
@@ -73,9 +74,9 @@ const Weather = (props) => {
 
                     // For current and forecast weather data / One Call API 
                     dispatch(setWeatherData(data));
-                    dispatch(setCurrentWeather(data.current));
-                    dispatch(setHourlyForecast(data.hourly));
-                    dispatch(setDailyForecast(data.daily));
+                    // dispatch(setCurrentWeather(data.current));
+                    // dispatch(setHourlyForecast(data.hourly));
+                    // dispatch(setDailyForecast(data.daily));
 
                 })
                 .catch(error => {
@@ -91,9 +92,9 @@ const Weather = (props) => {
             // console.log("Weather.js useEffect WeatherDataOneCall", WeatherDataOneCall);
             // setWeatherData(WeatherDataOneCall);
             dispatch(setWeatherData(WeatherDataOneCall));
-            dispatch(setCurrentWeather(WeatherDataOneCall.current));
-            dispatch(setHourlyForecast(WeatherDataOneCall.hourly));
-            dispatch(setDailyForecast(WeatherDataOneCall.daily));
+            // dispatch(setCurrentWeather(WeatherDataOneCall.current));
+            // dispatch(setHourlyForecast(WeatherDataOneCall.hourly));
+            // dispatch(setDailyForecast(WeatherDataOneCall.daily));
         };
 
     }, []);
@@ -104,14 +105,19 @@ const Weather = (props) => {
             {errWeatherMessage !== "" ? <Alert color="danger">{errWeatherMessage}</Alert> : null}
             </Row>
 
-            <Row className="mb-4">
+            <Row className="my-4">
                 {/* For current weather data */}
-                {/* {weatherData.hasOwnProperty("weather") ? <WeatherResults weatherData={weatherData} /> : null} */}
+                {weatherData.hasOwnProperty("weather") ? <CurrentWeather /> : null}
                 {/* For current and forecast weather data / One Call API */}
                 {weatherData.hasOwnProperty("timezone") ? <CurrentWeather /> : null}
             </Row>
 
-            <Row className="mb-4">
+            <Row className="my-4">
+                {/* For current and forecast weather data / One Call API */}
+                {weatherData.hasOwnProperty("timezone") ? <HourlyForecast /> : null}
+            </Row>
+
+            <Row className="my-4">
                 {/* For current and forecast weather data / One Call API */}
                 {weatherData.hasOwnProperty("timezone") ? <FiveDayForecast /> : null}
             </Row>
