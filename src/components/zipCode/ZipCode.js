@@ -10,6 +10,12 @@ const ZipCode = (props) => {
     const [txtZipCode, setTxtZipCode] = useState("");
     const [errZipCodeMessage, setErrWZipCodeMessage] = useState("");
 
+    // Google Maps api
+    // Get longitude and latitude from zip codes
+    // https://developers.google.com/maps/documentation/geocoding/overview?csw=1
+    // key=API_KEY
+    // AIzaSyAyBfgs1t94oBneluRr89I8TlDOWNop-3U
+
     const submitZipCode = () => {
         // console.log("ZipCode.js setZipCode");
 
