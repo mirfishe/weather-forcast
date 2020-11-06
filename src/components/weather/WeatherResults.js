@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Container, Col, Row, Alert, Button} from "reactstrap";
+import {Container, Col, Row, Button} from "reactstrap";
 
 const WeatherResults = (props) => {
 
