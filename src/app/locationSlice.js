@@ -40,6 +40,6 @@ const locationSlice = createSlice({
 }
 });
 
-export const {setZipCode, setLatitude, setLongitude} = locationSlice.actions
+export const {setZipCode, setLatitude, setLongitude} = locationSlice.actions;
 
-export default locationSlice.reducer
+export default locationSlice.reducer;
