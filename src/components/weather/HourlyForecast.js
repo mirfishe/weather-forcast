@@ -10,7 +10,7 @@ const HourlyForecast = (props) => {
     // console.log("WeatherResults.js hourlyForecastWeatherData", hourlyForecastWeatherData);
 
     return(
-        <Row>
+        <Row className="my-4">
         {hourlyForecastWeatherData.map((hourlyForecast, index) => {
 
             // convert wind speed from m/s to mph

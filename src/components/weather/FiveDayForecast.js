@@ -10,7 +10,7 @@ const FiveDayForecast = (props) => {
     // console.log("WeatherResults.js dailyForecastWeatherData", dailyForecastWeatherData);
 
     return(
-        <Row>
+        <Row className="my-4">
         {dailyForecastWeatherData.map((dailyForecast, index) => {
 
             // convert wind speed from m/s to mph

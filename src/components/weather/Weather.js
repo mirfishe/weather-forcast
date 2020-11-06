@@ -3,13 +3,15 @@ import {useDispatch, useSelector} from "react-redux";
 import {Container, Col, Row, Alert} from "reactstrap";
 import {setWeatherData, setCurrentWeather, setHourlyForecast, setDailyForecast} from "../../app/weatherSlice";
 import CurrentWeather from "./CurrentWeather"
+import CurrentWeatherZipCode from "./CurrentWeatherZipCode"
 import HourlyForecast from "./HourlyForecast"
 import FiveDayForecast from "./FiveDayForecast"
 import WeatherDataOneCall from "./WeatherDataOneCall.json";
 
 const Weather = (props) => {
 
-    const appOffline = true;
+    // const appOffline = true;
+    const appOffline = false;
 
     const dispatch = useDispatch();
 
@@ -107,19 +109,19 @@ const Weather = (props) => {
 
             <Row className="my-4">
                 {/* For current weather data */}
-                {weatherData.hasOwnProperty("weather") ? <CurrentWeather /> : null}
+                {zipCode !== "" && weatherData.hasOwnProperty("timezone") ? <CurrentWeatherZipCode /> : null}
                 {/* For current and forecast weather data / One Call API */}
-                {weatherData.hasOwnProperty("timezone") ? <CurrentWeather /> : null}
+                {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <CurrentWeather /> : null}
             </Row>
 
             <Row className="my-4">
                 {/* For current and forecast weather data / One Call API */}
-                {weatherData.hasOwnProperty("timezone") ? <HourlyForecast /> : null}
+                {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <HourlyForecast /> : null}
             </Row>
 
             <Row className="my-4">
                 {/* For current and forecast weather data / One Call API */}
-                {weatherData.hasOwnProperty("timezone") ? <FiveDayForecast /> : null}
+                {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <FiveDayForecast /> : null}
             </Row>
 
             {/* <Row>
