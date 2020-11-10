@@ -4,13 +4,15 @@ import {Container, Col, Row, Button} from "reactstrap";
 
 const CurrentWeatherZipCode = (props) => {
 
-    // console.log("WeatherResults.js props", props);
-    // console.log("WeatherResults.js props.weatherData", props.weatherData);
+    const componentName = "CurrentWeatherZipCode.js";
+
+    // console.log(componentName, "props", props);
+    // console.log(componentName, "props.weatherData", props.weatherData);
     // let weatherData = props.weatherData;
-    // console.log("WeatherResults.js weatherData", weatherData);
+    // console.log(componentName, "weatherData", weatherData);
 
     const currentWeatherData = useSelector(state => state.weather.weatherData);
-    // console.log("WeatherResults.js currentWeatherData", currentWeatherData);
+    // console.log(componentName, "currentWeatherData", currentWeatherData);
 
     // convert wind speed from m/s to mph
     let windSpeed = (currentWeatherData.wind.speed * 2.23694).toPrecision(2);

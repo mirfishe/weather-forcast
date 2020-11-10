@@ -4,10 +4,12 @@ import {Container, Col, Row, Button} from "reactstrap";
 
 const FiveDayForecast = (props) => {
 
+    const componentName = "FiveDayForecast.js";
+
     const weatherData = useSelector(state => state.weather.weatherData);
 
     const dailyForecastWeatherData = weatherData.daily;
-    // console.log("WeatherResults.js dailyForecastWeatherData", dailyForecastWeatherData);
+    // console.log(componentName, "dailyForecastWeatherData", dailyForecastWeatherData);
 
     return(
         <Row className="my-4">

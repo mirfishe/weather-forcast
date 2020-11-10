@@ -4,10 +4,12 @@ import {Container, Col, Row, Button} from "reactstrap";
 
 const HourlyForecast = (props) => {
 
+    const componentName = "HourlyForecast.js";
+
     const weatherData = useSelector(state => state.weather.weatherData);
 
     const hourlyForecastWeatherData = weatherData.hourly;
-    // console.log("WeatherResults.js hourlyForecastWeatherData", hourlyForecastWeatherData);
+    // console.log(componentName, "hourlyForecastWeatherData", hourlyForecastWeatherData);
 
     return(
         <Row className="my-4">

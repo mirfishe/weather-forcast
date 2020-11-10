@@ -4,15 +4,17 @@ import {Container, Col, Row, Button} from "reactstrap";
 
 const CurrentWeather = (props) => {
 
-    // console.log("WeatherResults.js props", props);
-    // console.log("WeatherResults.js props.weatherData", props.weatherData);
+    const componentName = "CurrentWeather.js";
+
+    // console.log(componentName, "props", props);
+    // console.log(componentName, "props.weatherData", props.weatherData);
     // let weatherData = props.weatherData;
-    // console.log("WeatherResults.js weatherData", weatherData);
+    // console.log(componentName, "weatherData", weatherData);
 
     const weatherData = useSelector(state => state.weather.weatherData);
 
     const currentWeatherData = weatherData.current;
-    // console.log("WeatherResults.js currentWeatherData", currentWeatherData);
+    // console.log(componentName, "currentWeatherData", currentWeatherData);
 
     // convert wind speed from m/s to mph
     let windSpeed = (currentWeatherData.wind_speed * 2.23694).toPrecision(2);
@@ -24,26 +26,12 @@ const CurrentWeather = (props) => {
     const [temperatureType,  setTemperatureType] = useState('Fahrenheit');
 
     return(
-        <Col>
-                <h4>{weatherData.timezone}</h4>
-                <p><strong>Currently</strong> {currentWeatherData.weather[0].main}</p>
-                <h5>Temperature</h5>
-                {/* { temperatureType === 'Fahrenheit' ?  */}
-                <div>
-                {temperatureFahrenheit}&#176; {/* <Button className="ml-2" color="primary" size="sm" onClick={() => {setTemperatureType('Celsius')}}>Change to &deg;C</Button> */}
-                </div>
-                {/* :
-                <div>
-                {temperatureCelsius}&#176; <Button className="ml-2" color="secondary" size="sm" onClick={() => {setTemperatureType('Fahrenheit')}}>Change to &deg;F</Button>
-                </div>
-                }  */}
-                <h5>Humidity</h5>
-                <p> {currentWeatherData.humidity}%</p>
-                <h5>Atmospheric Pressure</h5>
-                <p> {pressure} in</p>
-                <h5>Wind Speed</h5>
-                <p>{windSpeed} mph</p>
-
+        <Col className="mt-4">
+            <h4>{currentWeatherData.weather[0].main}</h4>
+            <h5>Temperature <span className="ml-2 smallerText">{temperatureFahrenheit}&#176;</span></h5>
+            <h5>Humidity <span className="ml-2 smallerText">{currentWeatherData.humidity}%</span></h5>
+            <h5>Atmospheric Pressure <span className="ml-2 smallerText">{pressure} in</span></h5>
+            <h5>Wind Speed <span className="ml-2 smallerText">{windSpeed} mph</span></h5>
         </Col>
     )
 }
