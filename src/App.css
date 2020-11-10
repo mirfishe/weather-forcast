@@ -1,44 +1,59 @@
 :root {
-    --red: #e80d0d;
-    --orange: #f98500;
-    --blue: #303E73;
-    --green: #256F5C;
-    --blue-green: #0ed6a4;
-    --brown: #8c7a51;
-    --light-brown: #C3BDAE;
-    --very-light-brown: #F2EEE4;
-    --grey: #707170;
-    --black: #272727;
-    --blue-grey: #2c4870;
-    --light-blue-grey: #ABBCD4;
-    --very-light-blue-grey: #D9E2EE;
-    --dark-red: #9f3548;
-    --light-purple: #7681aa;
-    --very-light-purple: #D3D7E7;
-    --light-blue: lightblue;
-    --very-light-grey: #e9ecef;
-    --very-light-green: #CDE8E1;
-    --very-very-light-grey: #f8f9fa;
+  --red: #e80d0d;
+  --orange: #f98500;
+  --blue: #303E73;
+  --green: #256F5C;
+  --blue-green: #0ed6a4;
+  --brown: #8c7a51;
+  --light-brown: #C3BDAE;
+  --very-light-brown: #F2EEE4;
+  --grey: #707170;
+  --black: #272727;
+  --blue-grey: #2c4870;
+  --light-blue-grey: #ABBCD4;
+  --very-light-blue-grey: #D9E2EE;
+  --dark-red: #9f3548;
+  --light-purple: #7681aa;
+  --very-light-purple: #D3D7E7;
+  --light-blue: lightblue;
+  --very-light-grey: #e9ecef;
+  --very-light-green: #CDE8E1;
+  --very-very-light-grey: #f8f9fa;
+
+  --font-default: Helvetica,Arial,sans-serif;
+}
   
-    --font-default: Helvetica,Arial,sans-serif;
-  }
+body {
+  font-family: var(--font-default);
+  background-color: var(--very-very-light-grey);
+}
   
-  body {
-    font-family: var(--font-default);
-    background-color: var(--very-very-light-grey);
-  }
-  
-  .header {
-    /* background-color: lightblue; */
-    background-color: var(--very-light-blue-grey);
-    margin-bottom: 0rem;
+.header {
+  /* background-color: lightblue; */
+  background-color: var(--very-light-blue-grey);
+  margin-bottom: 0rem;
+}
+
+.currently {
+  background-color: var(--very-light-green);
+  margin-bottom: 0rem;
+}
+
+.today {
+  background-color: var(--very-light-brown);
+  margin-bottom: 0rem;
+}
+
+.thisWeek {
+  background-color: var(--very-light-purple);
+  margin-bottom: 0rem;
 }
 
 .smallText {
-    font-size: small;
-  }
+  font-size: small;
+}
   
-  .smallerText {
-    font-size: smaller;
-  }
+.smallerText {
+  font-size: smaller;
+}
   

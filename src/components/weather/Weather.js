@@ -105,17 +105,17 @@ const Weather = (props) => {
     }, [latitude, longitude]);
 
     return(
-        <Container className="mt-4">
+        <Container fluid className="mt-4">
             <Row>
-            {errWeatherMessage !== "" ? <Alert color="danger">{errWeatherMessage}</Alert> : null}
+            {errWeatherMessage !== "" ? <Alert color="danger" className="m-2">{errWeatherMessage}</Alert> : null}
             </Row>
 
             <Row className="my-4">
                 <Col>
-                <Jumbotron fluid className="header">
+                <Jumbotron fluid className="currently">
                     <Container>
-                        <h1 className="display-4">Currently</h1>
-                        {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <p class="lead">{weatherData.timezone}</p> : null}
+                        <h1 className="display-4 text-center">Currently</h1>
+                        {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <p className="lead text-center">{weatherData.timezone}</p> : null}
                     </Container>
                 </Jumbotron>
                 </Col>
@@ -128,29 +128,25 @@ const Weather = (props) => {
             <React.Fragment>
                 <Row className="my-4">
                     <Col xs="12">
-                        <Jumbotron fluid className="header">
+                        <Jumbotron fluid className="today">
                             <Container>
                             <h1 className="display-4 text-center">Today</h1>
                             </Container>
                         </Jumbotron>
                     </Col>
                 </Row>
-                <Row className="my-4">
-                    <HourlyForecast />
-                </Row>
+                <HourlyForecast />
 
                 <Row className="my-4">
                     <Col xs="12">
-                        <Jumbotron fluid className="header">
+                        <Jumbotron fluid className="thisWeek">
                             <Container>
                             <h1 className="display-4 text-center">This Week</h1>
                             </Container>
                         </Jumbotron>
                     </Col>
                 </Row>
-                <Row className="my-4">
-                    <FiveDayForecast />
-                </Row>
+                <FiveDayForecast />
             </React.Fragment>
             : null}
 
