@@ -1,6 +1,6 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import {Col, Row} from "reactstrap";
+import {Col, Row, Card, CardBody, CardText, CardHeader, CardFooter} from "reactstrap";
 
 const HourlyForecast = (props) => {
 
@@ -39,7 +39,7 @@ const HourlyForecast = (props) => {
     };
 
     return(
-        <Row className="my-4">
+        <Row className="justify-content-center my-4">
         {hourlyForecastWeatherData.map((hourlyForecast, index) => {
 
             // convert wind speed from m/s to mph
@@ -50,14 +50,18 @@ const HourlyForecast = (props) => {
 
             return (
                 index % 3 === 0 && index < 12 ? 
-                <Col key={index}>
-                    <h3>{calculateHour(index)}</h3>
-                    <h4>{hourlyForecast.weather[0].main}</h4>
-                    <h5>Temperature <span className="ml-2 smallerText">{temperatureFahrenheit}&#176;</span></h5>
-                    <h5>Humidity <span className="ml-2 smallerText">{hourlyForecast.humidity}%</span></h5>
-                    <h5>Atmospheric Pressure <span className="ml-2 smallerText">{pressure} in</span></h5>
-                    <h5>Wind Speed <span className="ml-2 smallerText">{windSpeed} mph</span></h5>
-                    </Col>
+                <Card key={index} className="m-2">
+                    <CardHeader>
+                        <h3 className="text-center">{calculateHour(index)}</h3>
+                    </CardHeader>
+                    <CardBody>
+                        <h4 className="text-center">{hourlyForecast.weather[0].main}</h4>
+                        <h5>Temperature <span className="ml-2 smallerText">{temperatureFahrenheit}&#176;</span></h5>
+                        <h5>Humidity <span className="ml-2 smallerText">{hourlyForecast.humidity}%</span></h5>
+                        <h5>Air Pressure <span className="ml-2 smallerText">{pressure} in</span></h5>
+                        <h5>Wind Speed <span className="ml-2 smallerText">{windSpeed} mph</span></h5>
+                    </CardBody>
+                    </Card>
                 : null
         )
     })}

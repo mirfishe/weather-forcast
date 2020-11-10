@@ -1,6 +1,6 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import {Col, Row} from "reactstrap";
+import {Col, Row, Card, CardBody, CardText, CardHeader, CardFooter} from "reactstrap";
 
 const FiveDayForecast = (props) => {
 
@@ -31,7 +31,7 @@ const FiveDayForecast = (props) => {
     };
 
     return(
-        <Row className="my-4">
+        <Row className="justify-content-center my-4">
         {dailyForecastWeatherData.map((dailyForecast, index) => {
 
             // convert wind speed from m/s to mph
@@ -43,16 +43,20 @@ const FiveDayForecast = (props) => {
 
             return (
                 index < 5 ? 
-                <Col key={index}>
-                    <h3>{calculateDay(index)}</h3>
-                    <h4>{dailyForecast.weather[0].main}</h4>
+                <Card key={index} className="m-2">
+                    <CardHeader>
+                    <h3 className="text-center">{calculateDay(index)}</h3>
+                    </CardHeader>
+                    <CardBody>
+                    <h4 className="text-center">{dailyForecast.weather[0].main}</h4>
                     <h5>Temperature</h5>
                     <div className="ml-2">High {dailyHighTemperatureFahrenheit}&#176;</div>
                     <div className="ml-2 mb-2">Low {dailyLowTemperatureFahrenheit}&#176;</div>
                     <h5>Humidity <span className="ml-2 smallerText">{dailyForecast.humidity}%</span></h5>
-                    <h5>Atmospheric Pressure <span className="ml-2 smallerText">{pressure} in</span></h5>
+                    <h5>Air Pressure <span className="ml-2 smallerText">{pressure} in</span></h5>
                     <h5>Wind Speed <span className="ml-2 smallerText">{windSpeed} mph</span></h5>
-                </Col>
+                    </CardBody>
+                    </Card>
                 : null
         )
     })}
