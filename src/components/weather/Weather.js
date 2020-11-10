@@ -20,6 +20,8 @@ const Weather = (props) => {
     const zipCode = useSelector(state => state.location.zipCode);
     const latitude = useSelector(state => state.location.latitude);
     const longitude = useSelector(state => state.location.longitude);
+
+    const zipCodeData = useSelector(state => state.location.zipCodeData);
     
     const [errWeatherMessage, setErrWeatherMessage] = useState("");
     // const [weatherData, setWeatherData] = useState({});
@@ -51,14 +53,14 @@ const Weather = (props) => {
             let url = "";
             let locationDataAvailable = false;
 
-            if (zipCode !== "") {
-                // let url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${key}`&units=metric`;
-                url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${key}`;
-                locationDataAvailable = true;
-            } else if (latitude !== "" && longitude !== "") {
+            if (latitude !== "" && latitude !== undefined && longitude !== "" && longitude !== undefined) {
                 // let url = `${baseURL}?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`;
                 url = `${baseURL}?lat=${latitude}&lon=${longitude}&appid=${key}`;
                 locationDataAvailable = true;
+            // } else if (zipCode !== "" && zipCode !== undefined) {
+            //     // // let url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${key}`&units=metric`;
+            //     // url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${key}`;
+            //     // locationDataAvailable = true;
             } else {
                 locationDataAvailable = false;
             };
@@ -66,7 +68,7 @@ const Weather = (props) => {
             if (locationDataAvailable) {
                 fetch(url)
                 .then(response => {
-                    // console.log(componentName, "useEffect response", response);
+                    console.log(componentName, "useEffect response", response);
                     if (!response.ok) {
                         throw Error(response.status + " " + response.statusText + " " + response.url);
                     } else {
@@ -119,7 +121,7 @@ const Weather = (props) => {
                     <h1 className="display-4">Currently</h1>
 
                     {/* For current weather data */}
-                    {zipCode !== "" && weatherData.hasOwnProperty("timezone") ? <p class="lead">{weatherData.name}</p>: null}
+                    {/* {zipCode !== "" && weatherData.hasOwnProperty("timezone") ? <p class="lead">{weatherData.name}</p>: null} */}
                     {/* For current and forecast weather data / One Call API */}
                     {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <p class="lead">{weatherData.timezone}</p> : null}
 
@@ -128,7 +130,7 @@ const Weather = (props) => {
                 </Col>
                 <Col>
                 {/* For current weather data */}
-                {zipCode !== "" && weatherData.hasOwnProperty("timezone") ? <CurrentWeatherZipCode /> : null}
+                {/* {zipCode !== "" && weatherData.hasOwnProperty("timezone") ? <CurrentWeatherZipCode /> : null} */}
                 {/* For current and forecast weather data / One Call API */}
                 {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <CurrentWeather /> : null}
                 </Col>
@@ -165,11 +167,16 @@ const Weather = (props) => {
             </React.Fragment>
             : null}
 
-            {/* <Row>
+            <Row>
                 <span>
-                    {JSON.stringify(weatherData)}
+                    {zipCodeData.hasOwnProperty("lat") ? JSON.stringify(zipCodeData) : null}
                 </span>
-            </Row> */}
+            </Row>
+            <Row>
+                <span>
+                    {weatherData.hasOwnProperty("timezone") ? JSON.stringify(weatherData) : null}
+                </span>
+            </Row>
         </Container>
     );
 };
