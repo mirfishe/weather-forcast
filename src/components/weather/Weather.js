@@ -12,8 +12,8 @@ const Weather = (props) => {
 
     const componentName = "Weather.js";
 
-    // const appOffline = true;
-    const appOffline = false;
+    const appOffline = true;
+    // const appOffline = false;
 
     const dispatch = useDispatch();
 
