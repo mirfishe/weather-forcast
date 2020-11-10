@@ -22,8 +22,6 @@ const CurrentWeather = (props) => {
 
     // const [temperatureKelvin, setTemperatureKelvin] = useState(weatherData.main.temp);
     const [temperatureFahrenheit, setTemperatureFahrenheit] = useState(Math.floor(((currentWeatherData.temp - 273.15) * 1.8) + 32));
-    const [temperatureCelsius,  setTemperatureCelsius] = useState(Math.floor(currentWeatherData.temp - 273.15));
-    const [temperatureType,  setTemperatureType] = useState('Fahrenheit');
 
     return(
         <Col className="mt-4">
