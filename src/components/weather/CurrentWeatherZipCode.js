@@ -20,14 +20,12 @@ const CurrentWeatherZipCode = (props) => {
 
     // const [temperatureKelvin, setTemperatureKelvin] = useState(weatherData.main.temp);
     const [temperatureFahrenheit, setTemperatureFahrenheit] = useState(Math.floor(((currentWeatherData.main.temp - 273.15) * 1.8) + 32));
-    const [temperatureCelsius,  setTemperatureCelsius] = useState(Math.floor(currentWeatherData.main.temp - 273.15));
-    const [temperatureType,  setTemperatureType] = useState('Fahrenheit');
 
     return(
         <Col className="mt-4">
             <h4>{currentWeatherData.weather[0].main}</h4>
             <h5>Temperature <span className="ml-2 smallerText">{temperatureFahrenheit}&#176;</span></h5>
-            <h5>Humidity <span className="ml-2 smallerText">{currentWeatherData.humidity}%</span></h5>
+            <h5>Humidity <span className="ml-2 smallerText">{currentWeatherData.main.humidity}%</span></h5>
             <h5>Atmospheric Pressure <span className="ml-2 smallerText">{pressure} in</span></h5>
             <h5>Wind Speed <span className="ml-2 smallerText">{windSpeed} mph</span></h5>
         </Col>

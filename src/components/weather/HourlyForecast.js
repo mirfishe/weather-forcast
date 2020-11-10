@@ -6,20 +6,6 @@ const HourlyForecast = (props) => {
 
     const componentName = "HourlyForecast.js";
 
-    // let currentDate = new Date();
-    // let currentHour = currentDate.getHours();
-    // console.log(componentName, "currentHour", currentHour);
-
-    // let dayPart = "am";
-    // if (currentHour > 11 && currentHour < 24) {
-    //     dayPart = "pm";
-    // };
-
-    // if (currentHour > 12) {
-    //     currentHour = currentHour -12;
-    // };
-    // console.log(componentName, "currentHour", currentHour);
-
     const weatherData = useSelector(state => state.weather.weatherData);
 
     const hourlyForecastWeatherData = weatherData.hourly;
@@ -29,8 +15,10 @@ const HourlyForecast = (props) => {
 
         let currentDate = new Date();
         let currentHour = currentDate.getHours();
+        // console.log(componentName, "currentHour", currentHour);
 
         let hourForecast = currentHour + forecastIndex + 1; // To account for the index starting at zero.
+        // console.log(componentName, "hourForecast", hourForecast);
 
         // Account for numbers over 24 hours
         // hourForecast +=  12;

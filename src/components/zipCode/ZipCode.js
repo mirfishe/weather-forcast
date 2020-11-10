@@ -30,11 +30,9 @@ const ZipCode = (props) => {
 
     return(
         <Container>
-            <Row>
-            {errZipCodeMessage !== "" ? <Alert color="danger">{errZipCodeMessage}</Alert> : null}
-            </Row>
-            <Row className="justify-content-center">
-                <Col sm="8">
+            <Row className="justify-content-center mt-4">
+                <Col sm="4">
+                {errZipCodeMessage !== "" ? <Alert color="danger">{errZipCodeMessage}</Alert> : null}
                     <Form>
                         <FormGroup>
                             <Label for="txtZipCode">Zip Code</Label>
