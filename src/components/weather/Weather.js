@@ -12,8 +12,8 @@ const Weather = (props) => {
 
     const componentName = "Weather.js";
 
-    const appOffline = true;
-    // const appOffline = false;
+    // const appOffline = true;
+    const appOffline = false;
 
     const dispatch = useDispatch();
 
@@ -119,7 +119,7 @@ const Weather = (props) => {
                     <h1 className="display-4">Currently</h1>
 
                     {/* For current weather data */}
-                    {zipCode !== "" && weatherData.hasOwnProperty("timezone") ? <p class="lead">{weatherData.timezone}</p>: null}
+                    {zipCode !== "" && weatherData.hasOwnProperty("timezone") ? <p class="lead">{weatherData.name}</p>: null}
                     {/* For current and forecast weather data / One Call API */}
                     {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <p class="lead">{weatherData.timezone}</p> : null}
 
@@ -134,33 +134,36 @@ const Weather = (props) => {
                 </Col>
             </Row>
 
-            <Row className="my-4">
-                <Col xs="12">
-                    <Jumbotron fluid className="header">
-                        <Container>
-                        <h1 className="display-4 text-center">Today</h1>
-                        </Container>
-                    </Jumbotron>
-                </Col>
-            </Row>
-            <Row className="my-4">
-                {/* For current and forecast weather data / One Call API */}
-                {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <HourlyForecast /> : null}
-            </Row>
+            {/* For current and forecast weather data / One Call API */}
+            {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ?
+            <React.Fragment>
+                <Row className="my-4">
+                    <Col xs="12">
+                        <Jumbotron fluid className="header">
+                            <Container>
+                            <h1 className="display-4 text-center">Today</h1>
+                            </Container>
+                        </Jumbotron>
+                    </Col>
+                </Row>
+                <Row className="my-4">
+                    <HourlyForecast />
+                </Row>
 
-            <Row className="my-4">
-                <Col xs="12">
-                    <Jumbotron fluid className="header">
-                        <Container>
-                        <h1 className="display-4 text-center">This Week</h1>
-                        </Container>
-                    </Jumbotron>
-                </Col>
-            </Row>
-            <Row className="my-4">
-                {/* For current and forecast weather data / One Call API */}
-                {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <FiveDayForecast /> : null}
-            </Row>
+                <Row className="my-4">
+                    <Col xs="12">
+                        <Jumbotron fluid className="header">
+                            <Container>
+                            <h1 className="display-4 text-center">This Week</h1>
+                            </Container>
+                        </Jumbotron>
+                    </Col>
+                </Row>
+                <Row className="my-4">
+                    <FiveDayForecast />
+                </Row>
+            </React.Fragment>
+            : null}
 
             {/* <Row>
                 <span>
