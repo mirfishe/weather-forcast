@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import {useSelector} from "react-redux";
-import {Container, Col, Row, Button} from "reactstrap";
+import {Col, Row} from "reactstrap";
 
 const HourlyForecast = (props) => {
 

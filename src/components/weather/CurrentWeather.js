@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import {useSelector} from "react-redux";
-import {Container, Col, Row, Button} from "reactstrap";
+import {Col} from "reactstrap";
 
 const CurrentWeather = (props) => {
 
@@ -17,11 +17,10 @@ const CurrentWeather = (props) => {
     // console.log(componentName, "currentWeatherData", currentWeatherData);
 
     // convert wind speed from m/s to mph
-    let windSpeed = (currentWeatherData.wind_speed * 2.23694).toPrecision(2);
-    let pressure = (currentWeatherData.pressure * 0.030).toPrecision(4);
+    const windSpeed = (currentWeatherData.wind_speed * 2.23694).toPrecision(2);
+    const pressure = (currentWeatherData.pressure * 0.030).toPrecision(4);
 
-    // const [temperatureKelvin, setTemperatureKelvin] = useState(weatherData.main.temp);
-    const [temperatureFahrenheit, setTemperatureFahrenheit] = useState(Math.floor(((currentWeatherData.temp - 273.15) * 1.8) + 32));
+    const temperatureFahrenheit = Math.floor(((currentWeatherData.temp - 273.15) * 1.8) + 32);
 
     return(
         <Col className="mt-4">

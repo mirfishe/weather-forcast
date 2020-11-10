@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import {useSelector} from "react-redux";
-import {Container, Col, Row, Button} from "reactstrap";
+import {Col, Row} from "reactstrap";
 
 const FiveDayForecast = (props) => {
 
@@ -15,7 +15,7 @@ const FiveDayForecast = (props) => {
 
         let currentDate = new Date();
         let currentDay = currentDate.getDay();
-        console.log(componentName, "currentDay", currentDay);
+        // console.log(componentName, "currentDay", currentDay);
 
         let weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 

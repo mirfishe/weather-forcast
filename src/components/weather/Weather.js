@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {Container, Col, Row, Jumbotron, Alert} from "reactstrap";
 import {setWeatherData, setCurrentWeather, setHourlyForecast, setDailyForecast} from "../../app/weatherSlice";
 import CurrentWeather from "./CurrentWeather"
-import CurrentWeatherZipCode from "./CurrentWeatherZipCode"
 import HourlyForecast from "./HourlyForecast"
 import FiveDayForecast from "./FiveDayForecast"
 import WeatherDataOneCall from "./WeatherDataOneCall.json";
@@ -24,7 +23,7 @@ const Weather = (props) => {
     const zipCodeData = useSelector(state => state.location.zipCodeData);
     
     const [errWeatherMessage, setErrWeatherMessage] = useState("");
-    // const [weatherData, setWeatherData] = useState({});
+
     const weatherData = useSelector(state => state.weather.weatherData);
 
     // Current weather data
@@ -68,7 +67,7 @@ const Weather = (props) => {
             if (locationDataAvailable) {
                 fetch(url)
                 .then(response => {
-                    console.log(componentName, "useEffect response", response);
+                    // console.log(componentName, "useEffect response", response);
                     if (!response.ok) {
                         throw Error(response.status + " " + response.statusText + " " + response.url);
                     } else {
@@ -76,10 +75,7 @@ const Weather = (props) => {
                     };
                 })
                 .then(data => {
-                    console.log(componentName, "useEffect data", data);
-
-                    // For current weather data
-                    // setWeatherData(data);
+                    // console.log(componentName, "useEffect data", data);
 
                     // For current and forecast weather data / One Call API 
                     dispatch(setWeatherData(data));
@@ -106,7 +102,7 @@ const Weather = (props) => {
             // dispatch(setDailyForecast(WeatherDataOneCall.daily));
         };
 
-    }, []);
+    }, [latitude, longitude]);
 
     return(
         <Container className="mt-4">
@@ -118,25 +114,16 @@ const Weather = (props) => {
                 <Col>
                 <Jumbotron fluid className="header">
                     <Container>
-                    <h1 className="display-4">Currently</h1>
-
-                    {/* For current weather data */}
-                    {/* {zipCode !== "" && weatherData.hasOwnProperty("timezone") ? <p class="lead">{weatherData.name}</p>: null} */}
-                    {/* For current and forecast weather data / One Call API */}
-                    {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <p class="lead">{weatherData.timezone}</p> : null}
-
+                        <h1 className="display-4">Currently</h1>
+                        {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <p class="lead">{weatherData.timezone}</p> : null}
                     </Container>
                 </Jumbotron>
                 </Col>
                 <Col>
-                {/* For current weather data */}
-                {/* {zipCode !== "" && weatherData.hasOwnProperty("timezone") ? <CurrentWeatherZipCode /> : null} */}
-                {/* For current and forecast weather data / One Call API */}
-                {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <CurrentWeather /> : null}
+                    {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <CurrentWeather /> : null}
                 </Col>
             </Row>
 
-            {/* For current and forecast weather data / One Call API */}
             {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ?
             <React.Fragment>
                 <Row className="my-4">
@@ -167,7 +154,7 @@ const Weather = (props) => {
             </React.Fragment>
             : null}
 
-            <Row>
+            {/* <Row>
                 <span>
                     {zipCodeData.hasOwnProperty("lat") ? JSON.stringify(zipCodeData) : null}
                 </span>
@@ -176,7 +163,7 @@ const Weather = (props) => {
                 <span>
                     {weatherData.hasOwnProperty("timezone") ? JSON.stringify(weatherData) : null}
                 </span>
-            </Row>
+            </Row> */}
         </Container>
     );
 };

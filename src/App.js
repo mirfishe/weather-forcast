@@ -12,8 +12,6 @@ function App() {
 
   const dispatch = useDispatch();
 
-  // const [latitude, setLatitude] = useState("");
-  // const [longitude, setLongitude] = useState("");
   const zipCode = useSelector(state => state.location.zipCode);
   const latitude = useSelector(state => state.location.latitude);
   const longitude = useSelector(state => state.location.longitude);

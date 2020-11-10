@@ -61,9 +61,9 @@ const ZipCode = (props) => {
                     };
                 })
                 .then(data => {
-                    console.log(componentName, "submitZipCode data", data);
-                    console.log(componentName, "submitZipCode data.lat", data.lat);
-                    console.log(componentName, "submitZipCode data.lng", data.lng);
+                    // console.log(componentName, "submitZipCode data", data);
+                    // console.log(componentName, "submitZipCode data.lat", data.lat);
+                    // console.log(componentName, "submitZipCode data.lng", data.lng);
 
                     dispatch(setZipCodeData(data));
                     dispatch(setLatitude(data.lat));
@@ -78,9 +78,9 @@ const ZipCode = (props) => {
                 });
 
             } else {
-                console.log(componentName, "submitZipCode zipCodeOfflineData", zipCodeOfflineData);
-                console.log(componentName, "submitZipCode zipCodeOfflineData.lat", zipCodeOfflineData.lat);
-                console.log(componentName, "submitZipCode zipCodeOfflineData.lng", zipCodeOfflineData.lng);
+                // console.log(componentName, "submitZipCode zipCodeOfflineData", zipCodeOfflineData);
+                // console.log(componentName, "submitZipCode zipCodeOfflineData.lat", zipCodeOfflineData.lat);
+                // console.log(componentName, "submitZipCode zipCodeOfflineData.lng", zipCodeOfflineData.lng);
                 dispatch(setZipCodeData(zipCodeOfflineData));
                 dispatch(setLatitude(zipCodeOfflineData.lat));
                 dispatch(setLongitude(zipCodeOfflineData.lng));
@@ -99,18 +99,18 @@ const ZipCode = (props) => {
                 {errZipCodeMessage !== "" ? <Alert color="danger">{errZipCodeMessage}</Alert> : null}
                     <Form>
                         <FormGroup>
-                            <Label for="txtZipCode">Zip Code</Label>
+                            <Label for="txtZipCode">Please Enter Your Zip Code</Label>
                             <Input type="text" id="txtZipCode" size="lg" value={txtZipCode} onChange={(event) => {/*console.log(event.target.value);*/ setTxtZipCode(event.target.value);}} />
                         </FormGroup>
                         <Button outline size="lg" color="primary" onClick={submitZipCode}>Submit</Button>
                     </Form>
                 </Col>
             </Row>
-            <Row>
+            {/* <Row>
                 <span>
                     {zipCodeData.hasOwnProperty("lat") ? JSON.stringify(zipCodeData) : null}
                 </span>
-            </Row>
+            </Row> */}
         </Container>
     );
 };
