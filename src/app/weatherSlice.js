@@ -1,5 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
+const componentName = "weatherSlice.js";
+
 const initialState = {
     weatherData: {},
     // currentWeather: {},
@@ -13,8 +15,8 @@ const weatherSlice = createSlice({
   reducers: {
     setWeatherData: {
         reducer(state, action) {
-          // console.log("appSlice.js setWeatherData action.payload", action.payload);
-          // console.log("appSlice.js setWeatherData action.payload.length", action.payload.length);
+          // console.log(componentName, "setWeatherData action.payload", action.payload);
+          // console.log(componentName, "setWeatherData action.payload.length", action.payload.length);
   
           state.weatherData = action.payload;
   
@@ -22,8 +24,8 @@ const weatherSlice = createSlice({
       },
     // setCurrentWeather: {
     //   reducer(state, action) {
-    //     // console.log("appSlice.js setCurrentWeather action.payload", action.payload);
-    //     // console.log("appSlice.js setCurrentWeather action.payload.length", action.payload.length);
+    //     // console.log(componentName, "setCurrentWeather action.payload", action.payload);
+    //     // console.log(componentName, "setCurrentWeather action.payload.length", action.payload.length);
 
     //     state.currentWeather = action.payload;
 
@@ -31,8 +33,8 @@ const weatherSlice = createSlice({
     // },
     // setHourlyForecast: {
     //   reducer(state, action) {
-    //     // console.log("appSlice.js setHourlyForecast action.payload", action.payload);
-    //     // console.log("appSlice.js setHourlyForecast action.payload.length", action.payload.length);
+    //     // console.log(componentName, "setHourlyForecast action.payload", action.payload);
+    //     // console.log(componentName, "setHourlyForecast action.payload.length", action.payload.length);
 
     //     state.hourlyForecast = action.payload;
 
@@ -40,8 +42,8 @@ const weatherSlice = createSlice({
     // },
     // setDailyForecast: {
     //   reducer(state, action) {
-    //     // console.log("appSlice.js setDailyForecast action.payload", action.payload);
-    //     // console.log("appSlice.js setDailyForecast action.payload.length", action.payload.length);
+    //     // console.log(componentName, "setDailyForecast action.payload", action.payload);
+    //     // console.log(componentName, "setDailyForecast action.payload.length", action.payload.length);
 
     //     state.dailyForecast = action.payload;
 
