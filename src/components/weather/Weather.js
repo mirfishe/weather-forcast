@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Container, Col, Row, Alert} from "reactstrap";
+import {Container, Col, Row, Jumbotron, Alert} from "reactstrap";
 import {setWeatherData, setCurrentWeather, setHourlyForecast, setDailyForecast} from "../../app/weatherSlice";
 import CurrentWeather from "./CurrentWeather"
 import CurrentWeatherZipCode from "./CurrentWeatherZipCode"
@@ -10,8 +10,10 @@ import WeatherDataOneCall from "./WeatherDataOneCall.json";
 
 const Weather = (props) => {
 
-    // const appOffline = true;
-    const appOffline = false;
+    const componentName = "Weather.js";
+
+    const appOffline = true;
+    // const appOffline = false;
 
     const dispatch = useDispatch();
 
@@ -32,15 +34,18 @@ const Weather = (props) => {
     // Only for latitude and longitude
     // https://openweathermap.org/api/one-call-api
     const baseURL="https://api.openweathermap.org/data/2.5/onecall";
-    const key = "203dcab38e74e0dd2117b8d81cc20e68";
+    const key = process.env.REACT_APP_OPENWEATHER_API_KEY;
+    // console.log(componentName, "process.env.REACT_APP_OPENWEATHER_API_KEY", process.env.REACT_APP_OPENWEATHER_API_KEY);
+    // console.log(componentName, "key", key);
+
 
     useEffect(() => {
-        // console.log("Weather.js useEffect");
-        // console.log("Weather.js useEffect zipCode", zipCode);
-        // console.log("Weather.js useEffect latitude", latitude);
-        // console.log("Weather.js useEffect longitude", longitude);
+        // console.log(componentName, "useEffect");
+        // console.log(componentName, "useEffect zipCode", zipCode);
+        // console.log(componentName, "useEffect latitude", latitude);
+        // console.log(componentName, "useEffect longitude", longitude);
 
-        // console.log("Weather.js useEffect appOffline", appOffline);
+        // console.log(componentName, "useEffect appOffline", appOffline);
 
         if (!appOffline) {
             let url = "";
@@ -61,7 +66,7 @@ const Weather = (props) => {
             if (locationDataAvailable) {
                 fetch(url)
                 .then(response => {
-                    // console.log("Weather.js useEffect response", response);
+                    // console.log(componentName, "useEffect response", response);
                     if (!response.ok) {
                         throw Error(response.status + " " + response.statusText + " " + response.url);
                     } else {
@@ -69,7 +74,7 @@ const Weather = (props) => {
                     };
                 })
                 .then(data => {
-                    console.log("Weather.js useEffect data", data);
+                    console.log(componentName, "useEffect data", data);
 
                     // For current weather data
                     // setWeatherData(data);
@@ -82,16 +87,16 @@ const Weather = (props) => {
 
                 })
                 .catch(error => {
-                    console.log("Weather.js useEffect error", error);
-                    // console.log("Weather.js useEffect error.name", error.name);
-                    // console.log("Weather.js useEffect error.message", error.message);
+                    console.log(componentName, "useEffect error", error);
+                    // console.log(componentName, "useEffect error.name", error.name);
+                    // console.log(componentName, "useEffect error.message", error.message);
                     setErrWeatherMessage(error.name + ": " + error.message);
                 });
 
             };
 
         } else {
-            // console.log("Weather.js useEffect WeatherDataOneCall", WeatherDataOneCall);
+            // console.log(componentName, "useEffect WeatherDataOneCall", WeatherDataOneCall);
             // setWeatherData(WeatherDataOneCall);
             dispatch(setWeatherData(WeatherDataOneCall));
             // dispatch(setCurrentWeather(WeatherDataOneCall.current));
@@ -108,17 +113,50 @@ const Weather = (props) => {
             </Row>
 
             <Row className="my-4">
+                <Col>
+                <Jumbotron fluid className="header">
+                    <Container>
+                    <h1 className="display-4">Currently</h1>
+
+                    {/* For current weather data */}
+                    {zipCode !== "" && weatherData.hasOwnProperty("timezone") ? <p class="lead">{weatherData.timezone}</p>: null}
+                    {/* For current and forecast weather data / One Call API */}
+                    {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <p class="lead">{weatherData.timezone}</p> : null}
+
+                    </Container>
+                </Jumbotron>
+                </Col>
+                <Col>
                 {/* For current weather data */}
                 {zipCode !== "" && weatherData.hasOwnProperty("timezone") ? <CurrentWeatherZipCode /> : null}
                 {/* For current and forecast weather data / One Call API */}
                 {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <CurrentWeather /> : null}
+                </Col>
             </Row>
 
+            <Row className="my-4">
+                <Col xs="12">
+                    <Jumbotron fluid className="header">
+                        <Container>
+                        <h1 className="display-4 text-center">Today</h1>
+                        </Container>
+                    </Jumbotron>
+                </Col>
+            </Row>
             <Row className="my-4">
                 {/* For current and forecast weather data / One Call API */}
                 {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <HourlyForecast /> : null}
             </Row>
 
+            <Row className="my-4">
+                <Col xs="12">
+                    <Jumbotron fluid className="header">
+                        <Container>
+                        <h1 className="display-4 text-center">This Week</h1>
+                        </Container>
+                    </Jumbotron>
+                </Col>
+            </Row>
             <Row className="my-4">
                 {/* For current and forecast weather data / One Call API */}
                 {latitude !== "" && longitude !== "" && weatherData.hasOwnProperty("timezone") ? <FiveDayForecast /> : null}

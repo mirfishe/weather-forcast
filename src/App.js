@@ -8,6 +8,8 @@ import ZipCode from "./components/zipCode/ZipCode";
 
 function App() {
 
+  const componentName = "App.js";
+
   const dispatch = useDispatch();
 
   // const [latitude, setLatitude] = useState("");
@@ -23,17 +25,17 @@ function App() {
 
   const getLocation = () => {
     if (navigator.geolocation) {
-      // console.log("App.js getLocation navigator.geolocation", navigator.geolocation);
+      // console.log(componentName, "getLocation navigator.geolocation", navigator.geolocation);
       navigator.geolocation.getCurrentPosition(showPosition);
     } else {
-      // console.log("App.js getLocation Geolocation is not supported by this browser.");
+      // console.log(componentName, "getLocation Geolocation is not supported by this browser.");
       setErrLocationData("Geolocation is not supported by this browser.");
     };
   };
 
   const showPosition = (position) => {
-    // console.log("App.js showPosition position: ", position);
-    // console.log("App.js showPosition Latitude: ", position.coords.latitude, "Longitude: ", position.coords.longitude);
+    // console.log(componentName, "showPosition position: ", position);
+    // console.log(componentName, "showPosition Latitude: ", position.coords.latitude, "Longitude: ", position.coords.longitude);
     // setLatitude(position.coords.latitude);
     // setLongitude(position.coords.longitude);
 
@@ -47,8 +49,8 @@ function App() {
 
   useEffect(() => {
     if (!geolocationAvailable) {
-      // console.log("App.js useEffect geolocationAvailable", geolocationAvailable);
-      // console.log("App.js useEffect Location is not available.");
+      // console.log(componentName, "useEffect geolocationAvailable", geolocationAvailable);
+      // console.log(componentName, "useEffect Location is not available.");
       // setErrLocationData("Location is not available.");
     } else {
       setErrLocationData("");
@@ -57,12 +59,12 @@ function App() {
 
   useEffect(() => {
     if (zipCode !== "") {
-      // console.log("App.js useEffect zipCode: ", zipCode);
+      // console.log(componentName, "useEffect zipCode: ", zipCode);
       setLocationDataMessage("Zip Code: " + zipCode);
       setGeolocationAvailable(true);
       setLocationDataFound(true);
     } else if (latitude !== "" && longitude !== "") {
-      // console.log("App.js useEffect Latitude: ", latitude, "Longitude: ", longitude);
+      // console.log(componentName, "useEffect Latitude: ", latitude, "Longitude: ", longitude);
       setLocationDataMessage("Latitude: " + latitude + " Longitude: " + longitude);
       setGeolocationAvailable(true);
       setLocationDataFound(true);
@@ -76,7 +78,7 @@ function App() {
         <Container>
           <Row className="justify-content-center">
             <Col>
-              {locationDataMessage !== "" ? <Alert color="info">{locationDataMessage}</Alert> : null}
+              {/* {locationDataMessage !== "" ? <Alert color="info">{locationDataMessage}</Alert> : null} */}
               <Weather />
             </Col>
           </Row>
@@ -86,14 +88,21 @@ function App() {
 
   return (
     <React.Fragment>
-      <Jumbotron fluid>
+      <Jumbotron fluid className="header">
         <Container>
-          <h1 className="display-4">Local Weather Forecast</h1>
+          <h1 className="display-4 text-center">Local Weather Forecast</h1>
         </Container>
       </Jumbotron>
 
       <Container>
         <Row>
+          {/* <Col>
+          <Jumbotron fluid>
+            <Container>
+              <h1 className="display-4">Local Weather Forecast</h1>
+            </Container>
+          </Jumbotron>
+          </Col> */}
           <Col>
             {errLocationData !== "" ? <Alert color="danger">{errLocationData}</Alert> : null}
             {locationDataFound ? locationComponents() : <ZipCode />}
